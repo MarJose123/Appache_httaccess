@@ -1,0 +1,52 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.yourdomain.com
+RewriteRule (.*) http://yourdomain.com/$1 [R=301,L]
+
+RewriteEngine On
+RewriteRule ^([a-zA-Z0-9_-]+)$ users.php?user=$1
+RewriteRule ^([a-zA-Z0-9_-]+)/$ users.php?user=$1
+
+RewriteEngine On
+RewriteRule ^([a-zA-Z0-9_-]+)/([0-9]+)$ users.php?user=$1&page=$2
+RewriteRule ^([a-zA-Z0-9_-]+)/([0-9]+)/$ users.php?user=$1&page=$2
+
+RewriteEngine On
+RewriteCond %{HTTPS} !on
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+
+RewriteEngine on
+RewriteRule ^content-([0-9]+).html$ content.php?id=$1
+
+
+<IfModule mod_rewrite.c>
+SetEnvIfNoCase ^User-Agent$ .*(bot1|bot2|bot3|bot4|bot5|bot6|) HTTP_SAFE_BADBOT
+SetEnvIfNoCase ^User-Agent$ .*(bot1|bot2|bot3|bot4|bot5|bot6|) HTTP_SAFE_BADBOT
+Deny from env=HTTP_SAFE_BADBOT
+</ifModule>
+
+
+#Email Admin
+ServerSignature EMail
+SetEnv SERVER_ADMIN webmaster@domain.com
+
+
+
+#Removed WWW
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www.yourdomain.com [NC]
+RewriteRule ^(.*)$ http://yourdomain.com/$1 [L,R=301]
+
+
+
+
+#Error Page
+#change 404 to the link it will not found
+ErrorDocument 400 /400.html
+ErrorDocument 401 /401.html
+ErrorDocument 403 /403.html
+ErrorDocument 404 /404.html 
+ErrorDocument 500 /500.html
+ErrorDocument 502 /502.html
+ErrorDocument 504 /504.html
