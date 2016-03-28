@@ -1,0 +1,2 @@
+# Appache_httaccess
+.htaccess
